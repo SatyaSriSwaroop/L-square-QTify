@@ -3,7 +3,7 @@ import styles from "./Button.module.css";
 
 const Button = ({ text }) => {
     return (
-      <button class={styles.button}>{text}</button>
+      <button className={styles.button}>{text}</button>
     );
   }
   

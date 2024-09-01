@@ -1,0 +1,49 @@
+/* Card.module.css */
+.card {
+    background-color: var(--color-black);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    text-align: center;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .cardImage {
+    width: 100%;
+    height: auto;
+  }
+  
+  .cardContent {
+    padding: 10px;
+    border-radius: 0 0 8px 8px;
+    border: 100px black !important;
+    display: flex;
+    background-color: var(--color-white);
+  }
+  
+  .cardTitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .cardArtist {
+    font-size: 1rem;
+    padding-left: 10px;
+  }
+
+  .chipContainer {
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    
+  }
+
+  .color{
+    background-color: var(--color-black);
+    display: flex;
+    justify-content: flex-start; 
+    color: var(--color-white);
+  }

@@ -1,12 +1,15 @@
 import './App.css';
+import ActionAreaCard from './components/Card/Card';
 import Hero from './components/Hero/Hero';
 import Navbar from './components/Navbar/Navbar';
+import Section from './components/Section/Section';
 
 function App() {
   return (
-    <div>
+    <div className='App'>
       <Navbar></Navbar>
       <Hero></Hero>
+      <Section></Section>
     </div>
   );
 }
