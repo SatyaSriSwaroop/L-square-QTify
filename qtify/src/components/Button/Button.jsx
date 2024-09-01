@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "./Button.module.css";
 
-const Button = ({ text }) => {
+const Button = ({ text, collapse, handleCollapse }) => {
     return (
-      <button className={styles.button}>{text}</button>
+      <button className={styles.button} onClick={() => {
+        handleCollapse(!collapse);
+      }}>{text}</button>
     );
   }
   
