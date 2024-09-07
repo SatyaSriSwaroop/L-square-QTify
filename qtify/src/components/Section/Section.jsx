@@ -18,7 +18,7 @@ const Section = (title) => {
     const [selectedGener, setSelectedGener] = useState("jazz");
 
     const [collapse, setCollapse] = useState(true);
-    // const [newCollapse, setNewCollapse] = useState(true);
+    const [newCollapse, setNewCollapse] = useState(true);
 
     const getTopAlbums = async () => { 
         try{
@@ -101,9 +101,9 @@ const Section = (title) => {
     <div className={styles.AlbumsContainer}>
       <div className={styles.header}>
         <h2 className={styles.title}>New Albums</h2>
-        <Button text={collapse ? "Show All" : "Collapse"} collapse={collapse} handleCollapse={setCollapse}/>
+        <Button text={newCollapse ? "Show All" : "Collapse"} collapse={newCollapse} handleCollapse={setNewCollapse}/>
       </div>
-      {(collapse) ? 
+      {(newCollapse) ? 
         (<div>{newAlbums.length > 0 ? (
           <Carousel items={newAlbums} renderItem={(album) => (
             <Card image={album.image} follows={album.follows} name={album.title}/>
