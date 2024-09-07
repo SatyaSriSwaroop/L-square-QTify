@@ -5,18 +5,25 @@ import Card from "../Card/Card";
 import { useState } from "react";
 import Button from "../Button/Button";
 import Carousel from "../Carousel/Carousel";
+import Tabs from "../Tabs/Tabs";
 
 const Section = (title) => {
     title = "Top Albums";
     const [topAlbums, setTopAlbums] = useState([]);
     const [newAlbums, setNewAlbums] = useState([]);
+    const [songs, setSongs] = useState([]);
+
+    const [filteredSongs, setFilteredSongs] = useState([]);
+
+    const [selectedGener, setSelectedGener] = useState("jazz");
+
     const [collapse, setCollapse] = useState(true);
     const [newCollapse, setNewCollapse] = useState(true);
 
     const getTopAlbums = async () => { 
         try{
             let response = await axios.get("https://qtify-backend-labs.crio.do/albums/top");
-            console.log(response.data);
+            // console.log(response.data);
             setTopAlbums(response.data);
         }
         catch(err)
@@ -28,7 +35,7 @@ const Section = (title) => {
     const getNewAlbums = async () => { 
       try{
           let response = await axios.get("https://qtify-backend-labs.crio.do/albums/new");
-          console.log(response.data);
+          // console.log(response.data);
           setNewAlbums(response.data);
       }
       catch(err)
@@ -36,17 +43,37 @@ const Section = (title) => {
           console.log(err);
       }
   };
+  const getSongs = async () => { 
+    try{
+        let response = await axios.get("https://qtify-backend-labs.crio.do/songs");
+        // console.log(response.data);
+        setSongs(response.data);
+        setFilteredSongs(response.data);
+    }
+    catch(err)
+    {
+        console.log(err);
+    }
+};
 
     // getAlbums();
     useEffect(() => {
       getTopAlbums();
       getNewAlbums();
+      getSongs();
       }, []);
+
+      useEffect(() => {
+        if(selectedGener === "All")
+          setFilteredSongs(songs);  
+        else
+          setFilteredSongs(songs.filter((x) => x.genre.label === selectedGener));
+        }, [selectedGener]);
 
     
     return (
-      <>
-        <div className={styles.AlbumsContainer}>
+    <>
+    <div className={styles.AlbumsContainer}>
       <div className={styles.header}>
         <h2 className={styles.title}>Top Albums</h2>
         <Button text={collapse ? "Show All" : "Collapse"} collapse={collapse} handleCollapse={setCollapse}/>
@@ -93,6 +120,20 @@ const Section = (title) => {
         ))}
       </div>)
 }
+    </div>
+
+    {/* Songs */}
+    <div className={styles.AlbumsContainer}>
+      <div className={styles.header}>
+        <h2 className={styles.title}>Songs</h2>
+      </div>
+      <Tabs handleChange={setSelectedGener} />
+        (<div>{songs.length > 0 ? (
+          <Carousel items={filteredSongs} renderItem={(song) => (
+            <Card image={song.image} likes={song.likes} name={song.title}/>
+          )} />
+        ) : (<p>Loading...</p>)}
+        </div>)
     </div>
     </>
     );

@@ -48,8 +48,8 @@ const Carousel = ({ items, renderItem }) => {
           {renderItem(item)}
         </SwiperSlide>
       ))}
-      <div className="swiper-button-prev" ref={prevRef}><LeftNavButton /></div>
-      <div className="swiper-button-next" ref={nextRef}><RightNavButton /></div>
+      <div className="swiper-button-prev " ref={prevRef}><LeftNavButton /></div>
+      <div className="swiper-button-next " ref={nextRef}><RightNavButton /></div>
     </Swiper>
   );
 };

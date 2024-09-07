@@ -4,6 +4,10 @@
     transform: translateY(-50%);
     z-index: 10;
   }
+
+  .none{
+    display: none;
+  }
   
   .swiper-button-prev {
     left: 10px;
